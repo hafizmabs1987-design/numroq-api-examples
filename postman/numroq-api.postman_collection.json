@@ -1,0 +1,299 @@
+{
+  "info": {
+    "_postman_id": "ec227b2f-6074-4991-b89c-f8d3e575a389",
+    "name": "NumroQ Numerology & Astrology API",
+    "description": "Official public collection for the **NumroQ API** — 200+ numerology, astrology and divination calculators behind one REST endpoint.\n\n**Base URL:** `https://numroq-api-production.up.railway.app/api/v1`\n\n**Auth:** every calculate request sends your key in the `X-API-Key` header. Get a free key at https://dev.numroq.com (Developer portal → My API Keys), then set the collection variable `apiKey`.\n\n**How it works:** `GET /plugin/calculators` lists every calculator and its `tool_id`; `POST /calculator/{tool_id}` runs any of them. A few popular ones have named shortcuts (`/calculator/abjad`, `/calculator/ismazam`).\n\nDocs: https://numroq.com/docs  •  Website: https://numroq.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Discover",
+      "description": "List the available calculators (no API key needed).",
+      "item": [
+        {
+          "name": "List all calculators",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/plugin/calculators",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "plugin",
+                "calculators"
+              ]
+            },
+            "description": "Returns every registered calculator with its `tool_id`, name, category and input fields. Use a `tool_id` from here with `POST /calculator/{tool_id}`. Public, no key required."
+          },
+          "response": []
+        },
+        {
+          "name": "Plugin / API version",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/plugin/version",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "plugin",
+                "version"
+              ]
+            },
+            "description": "Current public version and changelog of the NumroQ plugin/API. Public."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Calculate",
+      "description": "Run any calculator. All requests need the `X-API-Key` header (set the `apiKey` variable).",
+      "item": [
+        {
+          "name": "Abjad (Arabic numerology)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"محمد\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/calculator/abjad",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculator",
+                "abjad"
+              ]
+            },
+            "description": "Kabir and Saghir Abjad value of an Arabic name or word, with element, ruling planet and a per-letter breakdown. Enter Arabic/Urdu/Persian script in `text`."
+          },
+          "response": []
+        },
+        {
+          "name": "Ism-e-Azam finder",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"عبد الله\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/calculator/ismazam",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculator",
+                "ismazam"
+              ]
+            },
+            "description": "Finds the resonant Name(s) of Allah for a given name based on its Abjad value."
+          },
+          "response": []
+        },
+        {
+          "name": "Life Path Number",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"birth_date\": \"1990-05-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/calculator/life_path_calculator",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculator",
+                "life_path_calculator"
+              ]
+            },
+            "description": "Western Life Path number and its meaning from a birth date (YYYY-MM-DD)."
+          },
+          "response": []
+        },
+        {
+          "name": "Full Numerology Report",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"John Michael Smith\",\n  \"birth_date\": \"1990-05-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/calculator/numerology_report",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculator",
+                "numerology_report"
+              ]
+            },
+            "description": "Complete Western profile: Life Path, Expression, Soul Urge, Personality, Birthday, Maturity, Personal Year, plus Pinnacles, Challenges, Karmic Debt/Lessons, Hidden Passion and Balance."
+          },
+          "response": []
+        },
+        {
+          "name": "Matrix of Destiny",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"birth_date\": \"1990-05-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/calculator/matrix_of_destiny",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculator",
+                "matrix_of_destiny"
+              ]
+            },
+            "description": "Builds the Matrix of Destiny octagram (8 points mapped to the 22 Major Arcana) with Mission, Life Purpose, Love/Money lines, Talents and more."
+          },
+          "response": []
+        },
+        {
+          "name": "Any calculator (generic)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"John Michael Smith\",\n  \"birth_date\": \"1990-05-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/calculator/{{toolId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculator",
+                "{{toolId}}"
+              ]
+            },
+            "description": "Generic form: set the `toolId` variable to any id from `GET /plugin/calculators` and send whichever of `text` / `text2` / `birth_date` / `birth_date2` / `params` it needs."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://numroq-api-production.up.railway.app/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "apiKey",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "toolId",
+      "value": "life_path_calculator",
+      "type": "string"
+    }
+  ]
+}
