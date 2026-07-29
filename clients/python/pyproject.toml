@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "numroq"
+version = "1.0.0"
+description = "Tiny client for the NumroQ API: 208+ numerology, astrology and Abjad calculators behind one REST endpoint."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "NumroQ" }]
+keywords = [
+  "numerology",
+  "astrology",
+  "abjad",
+  "gematria",
+  "life-path",
+  "matrix-of-destiny",
+  "horoscope",
+  "numroq",
+  "api",
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+Homepage = "https://numroq.com/docs"
+Documentation = "https://numroq.com/docs"
+Source = "https://github.com/hafizmabs1987-design/numroq-api-examples"
+"Free API key" = "https://dev.numroq.com"
+
+[tool.hatch.build.targets.wheel]
+packages = ["numroq"]

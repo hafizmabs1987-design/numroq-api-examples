@@ -73,6 +73,31 @@ node javascript/example.js        # Node.js
 bash curl/examples.sh             # cURL
 ```
 
+## Client libraries
+
+Small, zero-dependency clients wrap the API so you do not hand-roll requests:
+
+| Language | Package | Source |
+|---|---|---|
+| JavaScript / Node 18+ | `npm install numroq` | [`clients/js`](clients/js) |
+| Python 3.8+ | `pip install numroq` | [`clients/python`](clients/python) |
+
+```js
+const NumroQ = require("numroq");
+const nq = new NumroQ(process.env.NUMROQ_API_KEY);
+await nq.lifePath("1990-05-15");
+await nq.numerologyReport("John Michael Smith", "1990-05-15");
+await nq.abjad("محمد");
+```
+
+```python
+from numroq import NumroQ
+nq = NumroQ(os.environ["NUMROQ_API_KEY"])
+nq.life_path("1990-05-15")
+nq.numerology_report("John Michael Smith", "1990-05-15")
+nq.abjad("محمد")
+```
+
 ## Popular tool IDs
 
 | `tool_id` | Calculator |
